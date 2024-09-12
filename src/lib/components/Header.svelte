@@ -17,7 +17,7 @@
     <div class="flex justify-between px-3">
       <a class="text-xl font-semibold content-center py-4" href="/">Mystler.eu</a>
       <div class="sm:hidden py-2 content-center">
-        <button type="button" class="btn" on:click|stopPropagation={toggleMenu}>
+        <button type="button" class="btn w-10" on:click|stopPropagation={toggleMenu}>
           <i class="fa {menuOpen ? 'fa-xmark' : 'fa-bars'}"></i>
         </button>
       </div>
@@ -27,7 +27,7 @@
       <a href="/music">Music</a>
       <a href="/photos">Photos</a>
       <a href="/words">Words</a>
-      <a href="/contact">Contact</a>
+      <a href="/about">About</a>
     </div>
   </nav>
 </header>

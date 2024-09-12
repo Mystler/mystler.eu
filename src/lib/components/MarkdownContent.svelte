@@ -30,6 +30,9 @@
   .md :global(img) {
     max-width: min(1024px, 100%);
     max-height: 600px;
+  }
+
+  .md :global(img):not([class]) {
     @apply mx-auto;
   }
 

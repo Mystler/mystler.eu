@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { PostMD } from "$lib/posts";
+  import Panel from "./Panel.svelte";
 
   export let post: PostMD;
   export let date: string;
@@ -12,20 +13,14 @@
   }).format(new Date(date));
 </script>
 
-<div class="post-panel">
-  <article>
-    <div class="post-panel-head">
-      <h3>
-        {#if !url}
-          {post.metadata.title}
-        {:else}
-          <a href={url}>{post.metadata.title}</a>
-        {/if}
-      </h3>
-      <p>{dateDisplay}</p>
-    </div>
-    <div class="post-panel-body">
-      <svelte:component this={post.default} />
-    </div>
-  </article>
-</div>
+<Panel>
+  <div slot="title">
+    {#if !url}
+      {post.metadata.title}
+    {:else}
+      <a href={url}>{post.metadata.title}</a>
+    {/if}
+  </div>
+  <div slot="date">{dateDisplay}</div>
+  <svelte:component this={post.default} />
+</Panel>

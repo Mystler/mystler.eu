@@ -7,6 +7,7 @@
   import { siteLink } from "$lib/constants";
   import { page } from "$app/stores";
   import { PageDescription, PageTitle } from "$lib/page-meta";
+  import Panel from "$lib/components/Panel.svelte";
 
   // Update title and description stores based on page data
   // unless we expect MarkdownContent to do it in md-pages.
@@ -28,7 +29,7 @@
 
 <Header />
 
-<div class="site-content flex justify-center gap-4 flex-col lg:flex-row">
+<div class="site-content px-4 py-4 flex justify-center gap-4 flex-col lg:flex-row">
   <main class="grow lg:max-w-screen-xl">
     <slot />
   </main>
@@ -36,3 +37,9 @@
     <Sidebar />
   </div>
 </div>
+
+<style lang="postcss">
+  .site-content :global(a) {
+    @apply text-sky-400 hover:text-sky-50 visited:text-sky-500;
+  }
+</style>

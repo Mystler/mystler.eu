@@ -1,3 +1,7 @@
-<div class="page-panel">
+<script>
+  import Panel from "$lib/components/Panel.svelte";
+</script>
+
+<Panel>
   <slot />
-</div>
+</Panel>

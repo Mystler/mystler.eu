@@ -5,8 +5,7 @@ description: Find out more about what projects Mystler is or has been working on
 
 # Projects
 
-Over the years, I have been and still am working on a multitude of programming related projects, from scripts, to applications, to websites. I love to create or facilitate things in any context. Not rarely that context is
-a gaming related one. I want to introduce you to some of my work here. Please note that this only a small glimpse into everything I have done since programming is pretty much a daily part of my life where I constantly solve problems or realize solutions in a way that gives me joy and/or allows me to learn new things.
+Over the years, I have been and still am working on a multitude of programming related projects, from scripts, to applications, to websites. I love to create or facilitate things in any context. Not rarely that context is a gaming related one. I want to introduce you to some of my work here. Please note that this only a small glimpse into everything I have done since programming is pretty much a daily part of my life where I constantly solve problems or realize solutions in a way that gives me joy and/or allows me to learn new things.
 
 ## Technologies
 
@@ -16,7 +15,7 @@ Before I go into some examples, let me list a selection of the programming langu
 
 C, C++, C++/CLI, <u>C#</u>, CSS, HTML, Lua, Java, JavaScript, Python, <u>Ruby</u>, SQL, <u>TypeScript</u>
 
-My personal favorites are <u>underlined</u>. This means I have a preference to choose them when starting a project of my own because they are particularly fun to work with. However, I consider myself very flexible and open to learn new things, so the above list should not be seen as a fixed pool. There may also be more languages that I did not think of specifically or consider not worth to include in a list, like dabbling with BASIC as a kid.
+My personal favorites are <u>underlined</u>. This means I have a preference to choose them when starting a project of my own because they are particularly fun to work with. However, I consider myself very flexible and open to learn new things, so the above list should not be seen as a fixed pool. I sometimes like to say "if you know one programming language, you know them all". I am aware that this is an exaggeration and the particular quirks and specialties of different languages are also an important thing to pick up with experience. Nevertheless, I strongly believe that programming is not about a particular language but rather about a general mindset and approach to solving problems. When somebody has mastered this kind of thinking, picking up any language is just a secondary step on the way. There may also be more languages that I did not think of specifically or consider not worth to include in a list, like dabbling with BASIC as a kid.
 
 Here is also a small selection of technologies and frameworks.
 
@@ -24,7 +23,7 @@ Here is also a small selection of technologies and frameworks.
 
 CMake, Git, Linux Servers, .NET, NodeJS/NPM, Ruby on Rails, Unreal Engine, Spreadsheets (Excel and Google), SQL Databases (MySQL/Maria/Postgres/Oracle/SQLite), Subversion, Svelte / SvelteKit, Tailwind, Qt, Visual Studio and VS Code
 
-The same disclaimer as for programming languages applies. I consider all of these tools as part of the bigger picture and I will practically use whatever I think will help me achieve a result in a way that seems both fitting for the context, fun, a good choice, and the right mix between effort and gain.
+The same disclaimer as for programming languages applies. I consider all of these tools as part of the bigger picture and I will practically use whatever I think will help me achieve a result in a way that seems all fitting for the context, fun, a good choice, and the right mix between effort and gain.
 
 ## World of Warcraft
 

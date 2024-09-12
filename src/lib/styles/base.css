@@ -18,7 +18,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-semibold mt-8 mb-4 first:mt-0;
+  @apply font-semibold mt-6 mb-3 first:mt-0;
 }
 
 h1 {
@@ -39,14 +39,6 @@ h4 {
 
 /* Custom classes */
 
-.site-content {
-  @apply px-4 py-4;
-}
-
-.site-content a {
-  @apply text-sky-400 hover:text-sky-50 visited:text-sky-500;
-}
-
 .btn {
   @apply px-3 py-2 rounded-md bg-zinc-800;
   @apply hover:text-white hover:bg-zinc-600;
@@ -56,31 +48,11 @@ h4 {
   @apply cursor-not-allowed text-zinc-400 hover:bg-zinc-800;
 }
 
-.page-panel {
-  @apply p-4 bg-zinc-800 rounded-xl;
-}
-
-.post-panel {
-  @apply bg-zinc-800 rounded-xl mb-4 last:mb-0;
-}
-.post-panel-head {
-  @apply px-4 py-4 flex justify-between items-center rounded-t-xl bg-zinc-900;
-}
-.post-panel-head * {
-  @apply mb-0;
-}
-.post-panel-head :last-child {
-  @apply text-right;
-}
-.post-panel-body {
-  @apply p-4;
-}
-
 .link-panel {
   @apply flex flex-col divide-y divide-zinc-500 rounded-lg;
 }
 .link-panel a {
-  @apply p-3 first:rounded-t-lg last:rounded-b-lg bg-zinc-900 hover:bg-zinc-700;
+  @apply p-3 first:rounded-t-lg last:rounded-b-lg bg-zinc-900 hover:bg-zinc-700 font-semibold;
 }
 
 .youtube {

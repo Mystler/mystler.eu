@@ -1,7 +1,9 @@
-<div class="post-panel">
-  <div class="post-panel-head">
-    <h3 class="mx-auto">Links</h3>
-  </div>
+<script>
+  import Panel from "./Panel.svelte";
+</script>
+
+<Panel>
+  <div slot="title" class="text-center">Links</div>
   <div class="post-panel-body text-center flex flex-col gap-4 text-4xl">
     <a href="https://github.com/Mystler" title="GitHub" target="_blank" rel="noopener">
       <i class="fa-brands fa-github"></i>
@@ -16,15 +18,13 @@
       <i class="fa-brands fa-twitch"></i>
     </a>
   </div>
-</div>
+</Panel>
 
-<div class="post-panel">
-  <div class="post-panel-head">
-    <h3 class="mx-auto">Support Me</h3>
-  </div>
+<Panel>
+  <div slot="title" class="text-center">Support Me</div>
   <div class="post-panel-body text-center flex flex-col gap-4 text-4xl">
     <a href="https://www.paypal.me/Mystler" title="PayPal" target="_blank" rel="noopener">
       <i class="fa-brands fa-paypal"></i>
     </a>
   </div>
-</div>
+</Panel>
