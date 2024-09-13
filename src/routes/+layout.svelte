@@ -9,6 +9,7 @@
   import { PageDescription, PageTitle } from "$lib/page-meta";
   import AudioPlayer from "$lib/components/AudioPlayer.svelte";
   import { GlobalAudioCurrentSong, GlobalAudioPlayer } from "$lib/audioplayer";
+  import { slide } from "svelte/transition";
 
   // Update title and description stores based on page data
   // unless we expect MarkdownContent to do it in md-pages.
@@ -40,12 +41,23 @@
 <div class="flex flex-col min-h-screen">
   <Header />
 
-  <div class="site-content grow px-4 py-4 flex justify-center gap-4 flex-col lg:flex-row">
-    <main class="grow lg:max-w-screen-xl">
-      <slot />
-    </main>
-    <div class="flex-none lg:w-72 lg:sticky lg:self-start lg:top-[76px]">
-      <Sidebar />
+  <div class="site-content grow px-4 py-4">
+    {#if $page.data.titleImage}
+      <div transition:slide class="mb-4">
+        <img
+          class="mx-auto rounded-xl border-2 border-zinc-800"
+          src={$page.data.titleImage}
+          alt="Mystler.eu"
+        />
+      </div>
+    {/if}
+    <div class="flex justify-center gap-4 flex-col lg:flex-row">
+      <main class="grow lg:max-w-screen-xl">
+        <slot />
+      </main>
+      <div class="flex-none lg:w-72 lg:sticky lg:self-start lg:top-[76px]">
+        <Sidebar />
+      </div>
     </div>
   </div>
 

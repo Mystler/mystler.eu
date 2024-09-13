@@ -7,6 +7,7 @@ declare global {
     interface PageData {
       title?: string;
       description?: string;
+      titleImage?: string;
     }
     // interface PageState {}
     // interface Platform {}
