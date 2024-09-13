@@ -7,7 +7,8 @@
   import { siteLink } from "$lib/constants";
   import { page } from "$app/stores";
   import { PageDescription, PageTitle } from "$lib/page-meta";
-  import Panel from "$lib/components/Panel.svelte";
+  import AudioPlayer from "$lib/components/AudioPlayer.svelte";
+  import { GlobalAudioCurrentSong, GlobalAudioPlayer } from "$lib/audioplayer";
 
   // Update title and description stores based on page data
   // unless we expect MarkdownContent to do it in md-pages.
@@ -15,6 +16,13 @@
     if (!$page.route.id?.startsWith("/(md-pages)")) {
       PageTitle.set($page.data.title);
       PageDescription.set($page.data.description);
+    }
+  }
+
+  function handleKeyDown(e: KeyboardEvent) {
+    if ($GlobalAudioPlayer?.isActive() && e.key === " ") {
+      $GlobalAudioPlayer?.togglePlay();
+      e.preventDefault();
     }
   }
 </script>
@@ -27,14 +35,27 @@
   <meta property="og:url" content="{siteLink}{$page.url.pathname}" />
 </svelte:head>
 
-<Header />
+<svelte:window on:keydown={handleKeyDown} />
 
-<div class="site-content px-4 py-4 flex justify-center gap-4 flex-col lg:flex-row">
-  <main class="grow lg:max-w-screen-xl">
-    <slot />
-  </main>
-  <div class="flex-none lg:w-72 lg:sticky lg:self-start lg:top-[76px]">
-    <Sidebar />
+<div class="flex flex-col min-h-screen">
+  <Header />
+
+  <div class="site-content grow px-4 py-4 flex justify-center gap-4 flex-col lg:flex-row">
+    <main class="grow lg:max-w-screen-xl">
+      <slot />
+    </main>
+    <div class="flex-none lg:w-72 lg:sticky lg:self-start lg:top-[76px]">
+      <Sidebar />
+    </div>
+  </div>
+
+  <div class="sticky bottom-0">
+    <AudioPlayer
+      bind:this={$GlobalAudioPlayer}
+      on:urlChanged={(e) => {
+        GlobalAudioCurrentSong.set(e.detail.url);
+      }}
+    />
   </div>
 </div>
 
