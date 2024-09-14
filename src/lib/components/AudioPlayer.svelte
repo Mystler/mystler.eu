@@ -1,6 +1,5 @@
 <script lang="ts">
   import { GlobalAudioVolume } from "$lib/audioplayer";
-  import { createEventDispatcher } from "svelte";
 
   let url: string | null = null;
   let name: string;
@@ -52,8 +51,8 @@
   }
 
   // Provide hook for base layout
-  const dispatch = createEventDispatcher();
-  $: dispatch("urlChanged", { url });
+  export let onUrlChanged: (url: string | null) => void;
+  $: onUrlChanged(url);
 </script>
 
 {#if url}

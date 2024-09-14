@@ -64,8 +64,8 @@
   <div class="sticky bottom-0">
     <AudioPlayer
       bind:this={$GlobalAudioPlayer}
-      on:urlChanged={(e) => {
-        GlobalAudioCurrentSong.set(e.detail.url);
+      onUrlChanged={(url) => {
+        GlobalAudioCurrentSong.set(url);
       }}
     />
   </div>
