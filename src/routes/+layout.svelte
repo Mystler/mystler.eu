@@ -8,7 +8,7 @@
   import { page } from "$app/stores";
   import { PageDescription, PageTitle } from "$lib/page-meta";
   import AudioPlayer from "$lib/components/AudioPlayer.svelte";
-  import { GlobalAudioCurrentSong, GlobalAudioPlayer } from "$lib/audioplayer";
+  import { GlobalAudioCurrentSong, GlobalAudioPlayer, GlobalPlaylist } from "$lib/audioplayer";
   import { slide } from "svelte/transition";
 
   // Update title and description stores based on page data
@@ -64,6 +64,7 @@
   <div class="sticky bottom-0">
     <AudioPlayer
       bind:this={$GlobalAudioPlayer}
+      playlist={GlobalPlaylist}
       onUrlChanged={(url) => {
         GlobalAudioCurrentSong.set(url);
       }}

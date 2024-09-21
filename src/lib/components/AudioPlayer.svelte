@@ -1,14 +1,20 @@
 <script lang="ts">
-  import { GlobalAudioVolume } from "$lib/audioplayer";
+  import { GlobalAudioVolume, type PlaylistEntry } from "$lib/audioplayer";
+  import { writable, type Writable } from "svelte/store";
+  import PlaylistViewer from "./PlaylistViewer.svelte";
+
+  export let playlist: Writable<PlaylistEntry[]> = writable([]);
 
   let url: string | null = null;
   let name: string;
   let time: number;
   let duration: number;
   let paused: boolean = true;
+  let pendingPlay: boolean = false;
   let muted: boolean;
   let readyState: number;
   let audio: HTMLAudioElement;
+  let playlistViewer: PlaylistViewer;
 
   function format(time: number): string {
     if (isNaN(time)) return "...";
@@ -35,24 +41,48 @@
     paused = !paused;
   }
 
-  export function playSong(src: string | null, title: string) {
+  export function playSong(src: string | null, title: string, playNow: boolean = true) {
     if (src !== url) {
+      // Different song, so reset a bunch of vars and kick off new play using pendingPlay
       url = src;
       name = title;
       time = 0;
+      readyState = 0;
+      paused = true;
+      pendingPlay = playNow;
     }
   }
 
-  // Restart the actual player when variables change and data is ready
+  function playNext(now: boolean) {
+    if ($playlist.length > 0) {
+      playSong($playlist[0].url, $playlist[0].title, now);
+      [, ...$playlist] = $playlist;
+    }
+  }
+
   $: {
-    if (url && audio && readyState > audio.HAVE_CURRENT_DATA) {
-      audio.play();
+    // Open player when no song is set but we add to queue.
+    if (!url && $playlist.length > 0) {
+      playNext(false);
+    }
+  }
+
+  // Restart the actual player when variables changed and data is ready
+  $: {
+    if (pendingPlay && url && audio && readyState > audio.HAVE_CURRENT_DATA) {
+      paused = false;
+      pendingPlay = false;
     }
   }
 
   // Provide hook for base layout
   export let onUrlChanged: (url: string | null) => void;
   $: onUrlChanged(url);
+
+  function onEnded() {
+    time = 0;
+    playNext(true);
+  }
 </script>
 
 {#if url}
@@ -69,9 +99,7 @@
         bind:duration
         bind:paused
         bind:readyState
-        on:ended={() => {
-          time = 0;
-        }}
+        on:ended={onEnded}
       >
       </audio>
 
@@ -85,6 +113,18 @@
       >
         <i class="fa {paused ? 'fa-play' : 'fa-pause'} text-2xl"></i>
       </button>
+
+      {#if $playlist.length > 0}
+        <!-- Next button -->
+        <button
+          type="button"
+          title="Next"
+          class="btn size-12 shrink-0"
+          on:click={() => playNext(true)}
+        >
+          <i class="fa fa-forward-step text-2xl"></i>
+        </button>
+      {/if}
 
       <!-- Group of Name and Position indicator -->
       <div class="grow flex flex-col gap-1">
@@ -129,6 +169,15 @@
       <button type="button" title="Download" class="icon-button">
         <a href={url} download><i class="fa fa-download"></i></a>
       </button>
+      <!-- Playlist link -->
+      <button
+        type="button"
+        title="Playlist"
+        class="icon-button"
+        on:click={() => playlistViewer.show()}
+      >
+        <i class="fa fa-list"></i>
+      </button>
       <!-- Close button -->
       <button
         type="button"
@@ -136,10 +185,16 @@
         class="icon-button"
         on:click={() => {
           url = null;
+          playlist.set([]);
         }}><i class="fa fa-xmark"></i></button
       >
     </div>
   </div>
+  <PlaylistViewer
+    bind:this={playlistViewer}
+    {playlist}
+    onPlayNow={(song) => playSong(song.url, song.title)}
+  />
 {/if}
 
 <style lang="postcss">
