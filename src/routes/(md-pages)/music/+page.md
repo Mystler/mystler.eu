@@ -105,8 +105,7 @@ _Mixed Album_
 
 ## Music Sheets
 
+- One of the sheets I wrote is a swing called <a href="{siteLink}/music/FountainSwing.pdf" target="_blank" rel="noopener">Swing by the Fountain</a>. It has 4 voices and was written for a brass group but it can also be played by other instruments. A MIDI file to listen to is available <a href="{siteLink}/music/FountainSwing.mid" target="_blank" rel="noopener">here</a>.
 - A couple of years ago I wrote a piano duet based on the theme of the Skyrim video game. You can download the sheet <a href="{siteLink}/music/Dovahkiin.pdf" target="_blank" rel="noopener">here</a> and listen to it in <a href="https://www.youtube.com/watch?v=yI4HnQIxOwg" target="_blank" rel="noopener">this video</a>.
-
-- I also wrote a <a href="{siteLink}/music/Christmas_Medley.pdf" target="_blank" rel="noopener">christmas medley</a> inspired by Thomas Bergersen's music. It was written for a piano, a trumpet and a trombone.
-
 - Another arrangement for which you can download a <a href="{siteLink}/music/KaydeensTheme.pdf" target="_blank" rel="noopener">piano sheet</a> is <a href="https://youtu.be/9ajjgrV-oos" target="_blank" rel="noopener">Kaydeen's Theme</a>. This is my interpretation and arrangement of a music box tune from the Prismatic Imperium roleplay.
+- I also wrote a very simple <a href="{siteLink}/music/Christmas_Medley.pdf" target="_blank" rel="noopener">christmas medley</a> inspired by Thomas Bergersen's music. It was written for a piano, a trumpet and a trombone.
