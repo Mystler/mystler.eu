@@ -1,17 +1,22 @@
+<script>
+  /** @type {{title?: import('svelte').Snippet, date?: import('svelte').Snippet, children?: import('svelte').Snippet}} */
+  let { title, date, children } = $props();
+</script>
+
 <article class="bg-zinc-800 rounded-xl mb-4 last:mb-0">
-  {#if $$slots.title || $$slots.date}
+  {#if title || date}
     <div class="panel-head px-4 py-4 flex justify-between items-center rounded-t-xl bg-zinc-900">
-      {#if $$slots.title}
+      {#if title}
         <h3 class="mb-0 grow">
-          <slot name="title" />
+          {@render title()}
         </h3>
       {/if}
-      {#if $$slots.title}
-        <div class="text-right"><slot name="date" /></div>
+      {#if date}
+        <div class="text-right">{@render date()}</div>
       {/if}
     </div>
   {/if}
   <div class="p-4">
-    <slot />
+    {@render children?.()}
   </div>
 </article>

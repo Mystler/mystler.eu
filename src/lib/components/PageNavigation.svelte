@@ -1,7 +1,11 @@
 <script lang="ts">
-  export let currentPage: number;
-  export let hasNextPage: boolean;
-  export let hasPrevPage: boolean;
+  interface Props {
+    currentPage: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+  }
+
+  let { currentPage, hasNextPage, hasPrevPage }: Props = $props();
 </script>
 
 <div class="flex justify-between">

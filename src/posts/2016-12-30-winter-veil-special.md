@@ -13,32 +13,34 @@ you enjoy it!
 _The mobile versions for this episode will be available next week._
 
 <table class="table table-meu">
-  <tr>
-    <th class="text-center">
-      Title
-    </th>
-    <th class="text-center">
-      PDF (Desktop)
-    </th>
-    <th class="text-center">
-      MOBI (Kindle)
-    </th>
-    <th class="text-center">
-      EPUB (Other)
-    </th>
-  </tr>
-  <tr>
-    <td>
-      Tales of Azeroth: A Minor Enterprise (Winter Veil 2016 Special)
-    </td>
-    <td>
-      <a href="{siteLink}/dl/WinterVeilSpecial2016.pdf">Link</a>
-    </td>
-    <td>
-      <a href="{siteLink}/dl/WinterVeilSpecial2016.mobi">Link</a>
-    </td>
-    <td>
-      <a href="{siteLink}/dl/WinterVeilSpecial2016.epub">Link</a>
-    </td>
-  </tr>
+  <tbody>
+    <tr>
+      <th class="text-center">
+        Title
+      </th>
+      <th class="text-center">
+        PDF (Desktop)
+      </th>
+      <th class="text-center">
+        MOBI (Kindle)
+      </th>
+      <th class="text-center">
+        EPUB (Other)
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Tales of Azeroth: A Minor Enterprise (Winter Veil 2016 Special)
+      </td>
+      <td>
+        <a href="{siteLink}/dl/WinterVeilSpecial2016.pdf">Link</a>
+      </td>
+      <td>
+        <a href="{siteLink}/dl/WinterVeilSpecial2016.mobi">Link</a>
+      </td>
+      <td>
+        <a href="{siteLink}/dl/WinterVeilSpecial2016.epub">Link</a>
+      </td>
+    </tr>
+  </tbody>
 </table>

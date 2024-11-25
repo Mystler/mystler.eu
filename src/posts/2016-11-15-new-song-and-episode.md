@@ -9,34 +9,36 @@ title: New song and episode
 I've been somewhat busy again and ready to present episode four of Tales of Azeroth.
 
 <table class="table table-meu">
-  <tr>
-    <th class="text-center">
-      Title
-    </th>
-    <th class="text-center">
-      PDF (Desktop)
-    </th>
-    <th class="text-center">
-      MOBI (Kindle)
-    </th>
-    <th class="text-center">
-      EPUB (Other)
-    </th>
-  </tr>
-  <tr>
-    <td>
-      Tales of Azeroth: The Secrets of Power
-    </td>
-    <td>
-      <a href="{siteLink}/dl/TheSecretsOfPower.pdf">Link</a>
-    </td>
-    <td>
-      <a href="{siteLink}/dl/TheSecretsOfPower.mobi">Link</a>
-    </td>
-    <td>
-      <a href="{siteLink}/dl/TheSecretsOfPower.epub">Link</a>
-    </td>
-  </tr>
+  <tbody>
+    <tr>
+      <th class="text-center">
+        Title
+      </th>
+      <th class="text-center">
+        PDF (Desktop)
+      </th>
+      <th class="text-center">
+        MOBI (Kindle)
+      </th>
+      <th class="text-center">
+        EPUB (Other)
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Tales of Azeroth: The Secrets of Power
+      </td>
+      <td>
+        <a href="{siteLink}/dl/TheSecretsOfPower.pdf">Link</a>
+      </td>
+      <td>
+        <a href="{siteLink}/dl/TheSecretsOfPower.mobi">Link</a>
+      </td>
+      <td>
+        <a href="{siteLink}/dl/TheSecretsOfPower.epub">Link</a>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 Also, I uploaded a song I finished some time ago to YouTube and SoundCloud.

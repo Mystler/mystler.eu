@@ -2,6 +2,11 @@
   import { addSong, GlobalPlaylist, type PlaylistEntry } from "$lib/audioplayer";
   import { setContext } from "svelte";
   import { writable } from "svelte/store";
+  interface Props {
+    children?: import("svelte").Snippet;
+  }
+
+  let { children }: Props = $props();
 
   // Allow Audio Card elements to register with this context
   const listedSongs = setContext("songs", writable<PlaylistEntry[]>([]));
@@ -10,7 +15,7 @@
 <button
   type="button"
   class="p-4 mb-4 rounded-xl bg-zinc-900 text-sky-400 hover:text-white hover:bg-zinc-700"
-  on:click={(e) => {
+  onclick={(e) => {
     for (const song of $listedSongs) {
       addSong(GlobalPlaylist, song.url, song.title);
     }
@@ -25,7 +30,7 @@
 >
 
 <div class="audio-card-list">
-  <slot />
+  {@render children?.()}
 </div>
 
 <style lang="postcss">

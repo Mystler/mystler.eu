@@ -11,32 +11,34 @@ Here is one of my latest projects: World of Warcraft Fan Fiction. Yes, I actuall
 Special thanks to Patrick and Patrick for initial feedback and proofreading.
 
 <table class="table table-meu">
-  <tr>
-    <th class="text-center">
-      Title
-    </th>
-    <th class="text-center">
-      PDF (Desktop)
-    </th>
-    <th class="text-center">
-      MOBI (Kindle)
-    </th>
-    <th class="text-center">
-      EPUB (Other)
-    </th>
-  </tr>
-  <tr>
-    <td>
-      Tales of Azeroth: The Veovis Legacy
-    </td>
-    <td>
-      <a href="{siteLink}/dl/TheVeovisLegacy.pdf">Link</a>
-    </td>
-    <td>
-      <a href="{siteLink}/dl/TheVeovisLegacy.mobi">Link</a>
-    </td>
-    <td>
-      <a href="{siteLink}/dl/TheVeovisLegacy.epub">Link</a>
-    </td>
-  </tr>
+  <tbody>
+    <tr>
+      <th class="text-center">
+        Title
+      </th>
+      <th class="text-center">
+        PDF (Desktop)
+      </th>
+      <th class="text-center">
+        MOBI (Kindle)
+      </th>
+      <th class="text-center">
+        EPUB (Other)
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Tales of Azeroth: The Veovis Legacy
+      </td>
+      <td>
+        <a href="{siteLink}/dl/TheVeovisLegacy.pdf">Link</a>
+      </td>
+      <td>
+        <a href="{siteLink}/dl/TheVeovisLegacy.mobi">Link</a>
+      </td>
+      <td>
+        <a href="{siteLink}/dl/TheVeovisLegacy.epub">Link</a>
+      </td>
+    </tr>
+  </tbody>
 </table>

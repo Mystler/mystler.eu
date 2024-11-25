@@ -1,7 +1,7 @@
 <script lang="ts">
-  let menuOpen: boolean = false;
+  let menuOpen: boolean = $state(false);
 
-  function toggleMenu() {
+  function toggleMenu(event: MouseEvent) {
     menuOpen = !menuOpen;
 
     if (menuOpen) {
@@ -9,6 +9,8 @@
     } else {
       document.body.removeEventListener("click", toggleMenu);
     }
+
+    event.stopPropagation();
   }
 </script>
 
@@ -17,7 +19,7 @@
     <div class="flex justify-between px-3">
       <a class="text-xl font-semibold content-center py-4" href="/">Mystler.eu</a>
       <div class="sm:hidden py-2 content-center">
-        <button type="button" class="btn w-10" on:click|stopPropagation={toggleMenu}>
+        <button type="button" class="btn w-10" onclick={toggleMenu} aria-label="Toggle Menu">
           <i class="fa {menuOpen ? 'fa-xmark' : 'fa-bars'}"></i>
         </button>
       </div>

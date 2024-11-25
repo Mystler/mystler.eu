@@ -1,7 +1,7 @@
 <script lang="ts">
   import { siteLink } from "$lib/constants";
   import { fade } from "svelte/transition";
-  let lang = "en";
+  let lang = $state("en");
 
   const fadeIn = {
     delay: 200,
@@ -15,19 +15,19 @@
 <div class="flex space-x-4 mb-4">
   <button
     type="button"
-    on:click={() => {
+    onclick={() => {
       lang = "en";
     }}><img src="/img/en.png" alt="EN" /></button
   >
   <button
     type="button"
-    on:click={() => {
+    onclick={() => {
       lang = "de";
     }}><img src="/img/de.png" alt="DE" /></button
   >
   <button
     type="button"
-    on:click={() => {
+    onclick={() => {
       lang = "fr";
     }}><img src="/img/fr.png" alt="FR" /></button
   >

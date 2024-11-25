@@ -2,8 +2,11 @@
   import { type PlaylistEntry } from "$lib/audioplayer";
   import { writable, type Writable } from "svelte/store";
 
-  export let playlist: Writable<PlaylistEntry[]> = writable([]);
-  export let onPlayNow: (song: PlaylistEntry) => void;
+  interface Props {
+    playlist?: Writable<PlaylistEntry[]>;
+    onPlayNow: (song: PlaylistEntry) => void;
+  }
+  let { playlist = writable([]), onPlayNow }: Props = $props();
 
   let dialog: HTMLDialogElement;
 
@@ -23,15 +26,19 @@
     }
   }
 
-  let dragTargetIdx: number | null = null;
-  $: if ($playlist) dragTargetIdx = null; // Reset when playlist changes.
+  let dragTargetIdx: number | null = $state(null);
+  $effect(() => {
+    if ($playlist) dragTargetIdx = null; // Reset when playlist changes.
+  });
 </script>
 
 <dialog bind:this={dialog} class="backdrop:backdrop-blur bg-transparent">
   <div class="p-4 bg-zinc-700 rounded-xl border-2 border-zinc-800 text-zinc-200 min-w-80">
     <div class="flex justify-between gap-4 items-start">
       <h1>Queue</h1>
-      <button type="button" on:click={() => close()}><i class="fa fa-xmark text-2xl"></i></button>
+      <button type="button" aria-label="Close" onclick={() => close()}
+        ><i class="fa fa-xmark text-2xl"></i></button
+      >
     </div>
     {#if $playlist.length > 0}
       <p>
@@ -42,7 +49,7 @@
         <button
           type="button"
           class="p-2 rounded-lg bg-zinc-800 hover:text-white hover:bg-zinc-600"
-          on:click={() => {
+          onclick={() => {
             $playlist = [];
           }}><i class="fa fa-trash-can"></i> Clear All</button
         >
@@ -54,28 +61,28 @@
           class="playlist-entry {dragTargetIdx === index ? 'drag-target' : ''}"
           draggable="true"
           role="listitem"
-          on:dragstart={(e) => {
+          ondragstart={(e) => {
             if (e.dataTransfer) {
               e.dataTransfer.effectAllowed = "move";
               e.dataTransfer.clearData();
               e.dataTransfer.setData("text/plain", item.id.toString());
             }
           }}
-          on:dragover={(e) => {
+          ondragover={(e) => {
             e.preventDefault();
             if (e.dataTransfer) e.dataTransfer.dropEffect = "move";
           }}
-          on:dragenter={(e) => {
+          ondragenter={(e) => {
             if (e.relatedTarget instanceof Element && e.currentTarget.contains(e.relatedTarget))
               return; // Ignore if coming from a child
             dragTargetIdx = index;
           }}
-          on:dragleave={(e) => {
+          ondragleave={(e) => {
             if (e.relatedTarget instanceof Element && e.currentTarget.contains(e.relatedTarget))
               return; // Ignore if going to a child
             dragTargetIdx = null;
           }}
-          on:drop={(e) => {
+          ondrop={(e) => {
             e.preventDefault();
             if (e.dataTransfer) {
               const id = parseInt(e.dataTransfer.getData("text/plain"));
@@ -92,8 +99,9 @@
             <button
               type="button"
               title="Up"
+              aria-label="Up"
               class={index === 0 ? "pointer-events-none text-zinc-500" : ""}
-              on:click={() =>
+              onclick={() =>
                 ([$playlist[index - 1], $playlist[index]] = [
                   $playlist[index],
                   $playlist[index - 1],
@@ -103,8 +111,9 @@
             <button
               type="button"
               title="Down"
+              aria-label="Down"
               class={index >= $playlist.length - 1 ? "pointer-events-none text-zinc-500" : ""}
-              on:click={() =>
+              onclick={() =>
                 ([$playlist[index + 1], $playlist[index]] = [
                   $playlist[index],
                   $playlist[index + 1],
@@ -116,8 +125,9 @@
             <button
               type="button"
               title="Play Now"
+              aria-label="Play Now"
               class="hover:text-white"
-              on:click={() => {
+              onclick={() => {
                 $playlist = [...$playlist.slice(0, index), ...$playlist.slice(index + 1)];
                 onPlayNow(item);
                 close();
@@ -128,8 +138,9 @@
           <button
             type="button"
             title="Remove"
+            aria-label="Remove"
             class="hover:text-white"
-            on:click={() => {
+            onclick={() => {
               $playlist = [...$playlist.slice(0, index), ...$playlist.slice(index + 1)];
             }}><i class="fa fa-trash-can"></i></button
           >

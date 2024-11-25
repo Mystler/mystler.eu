@@ -2,7 +2,10 @@
   import PageNavigation from "$lib/components/PageNavigation.svelte";
   import Post from "$lib/components/Post.svelte";
 
-  export let data;
+  interface Props {
+    data: any;
+  }
+  let { data }: Props = $props();
 </script>
 
 {#each data.page.posts as post}

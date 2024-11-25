@@ -9,9 +9,13 @@
   import { getContext } from "svelte";
   import type { Writable } from "svelte/store";
 
-  export let src: string;
-  export let title: string;
-  export let genre: string | null = null;
+  interface Props {
+    src: string;
+    title: string;
+    genre?: string | null;
+  }
+
+  let { src, title, genre = null }: Props = $props();
 
   // Register our song into our parents list for "play all" tracking
   addSong(getContext<Writable<PlaylistEntry[]>>("songs"), src, title);
@@ -25,7 +29,7 @@
   <button
     type="button"
     class="audio-card {$GlobalAudioCurrentSong === src ? 'current-song' : ''}"
-    on:click={play}
+    onclick={play}
   >
     <i class="fa fa-play text-xl"></i>
     <b>{title}</b>
@@ -36,8 +40,9 @@
   <button
     type="button"
     title="Add to Queue"
+    aria-label="Add to Queue"
     class="absolute -bottom-1 -right-1 size-8 rounded-full bg-sky-900 hover:text-white hover:bg-sky-700"
-    on:click={(e) => {
+    onclick={(e) => {
       addSong(GlobalPlaylist, src, title);
       const button = e.currentTarget;
       button.classList.add("animate-ping");

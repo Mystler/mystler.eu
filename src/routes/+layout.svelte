@@ -11,14 +11,19 @@
   import { GlobalAudioCurrentSong, GlobalAudioPlayer, GlobalPlaylist } from "$lib/audioplayer";
   import { slide } from "svelte/transition";
 
+  interface Props {
+    children?: import("svelte").Snippet;
+  }
+  let { children }: Props = $props();
+
   // Update title and description stores based on page data
   // unless we expect MarkdownContent to do it in md-pages.
-  $: {
+  $effect(() => {
     if (!$page.route.id?.startsWith("/(md-pages)")) {
       PageTitle.set($page.data.title);
       PageDescription.set($page.data.description);
     }
-  }
+  });
 
   function handleKeyDown(e: KeyboardEvent) {
     if ($GlobalAudioPlayer?.isActive() && e.key === " ") {
@@ -36,7 +41,7 @@
   <meta property="og:url" content="{siteLink}{$page.url.pathname}" />
 </svelte:head>
 
-<svelte:window on:keydown={handleKeyDown} />
+<svelte:window onkeydown={handleKeyDown} />
 
 <div class="flex flex-col min-h-screen">
   <Header />
@@ -53,7 +58,7 @@
     {/if}
     <div class="flex justify-center gap-4 flex-col lg:flex-row">
       <main class="grow lg:max-w-screen-xl">
-        <slot />
+        {@render children?.()}
       </main>
       <div class="flex-none lg:w-72 lg:sticky lg:self-start lg:top-[76px]">
         <Sidebar />

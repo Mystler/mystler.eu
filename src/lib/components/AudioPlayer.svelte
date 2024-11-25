@@ -3,18 +3,22 @@
   import { writable, type Writable } from "svelte/store";
   import PlaylistViewer from "./PlaylistViewer.svelte";
 
-  export let playlist: Writable<PlaylistEntry[]> = writable([]);
+  interface Props {
+    playlist?: Writable<PlaylistEntry[]>;
+    onUrlChanged: (url: string | null) => void;
+  }
+  let { playlist = writable([]), onUrlChanged }: Props = $props();
 
-  let url: string | null = null;
-  let name: string;
-  let time: number;
-  let duration: number;
-  let paused: boolean = true;
-  let pendingPlay: boolean = false;
-  let muted: boolean;
-  let readyState: number;
-  let audio: HTMLAudioElement;
-  let playlistViewer: PlaylistViewer;
+  let url: string | null = $state(null);
+  let name: string | undefined = $state();
+  let time: number = $state(0);
+  let duration: number = $state(0);
+  let paused: boolean = $state(true);
+  let pendingPlay: boolean = $state(false);
+  let muted: boolean = $state(false);
+  let readyState: number = $state(0);
+  let audio: HTMLAudioElement | undefined = $state();
+  let playlistViewer: PlaylistViewer | undefined = $state();
 
   function format(time: number): string {
     if (isNaN(time)) return "...";
@@ -23,13 +27,13 @@
     return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
   }
 
-  let volumeIcon: string;
-  $: {
+  let volumeIcon: string = $state("");
+  $effect(() => {
     if (muted) volumeIcon = "fa-volume-xmark";
     else if ($GlobalAudioVolume >= 0.5) volumeIcon = "fa-volume-high";
     else if ($GlobalAudioVolume >= 0.2) volumeIcon = "fa-volume-low";
     else volumeIcon = "fa-volume-off";
-  }
+  });
 
   // Public access functions
 
@@ -60,24 +64,25 @@
     }
   }
 
-  $: {
+  $effect(() => {
     // Open player when no song is set but we add to queue.
     if (!url && $playlist.length > 0) {
       playNext(false);
     }
-  }
+  });
 
   // Restart the actual player when variables changed and data is ready
-  $: {
+  $effect(() => {
     if (pendingPlay && url && audio && readyState > audio.HAVE_CURRENT_DATA) {
       paused = false;
       pendingPlay = false;
     }
-  }
+  });
 
-  // Provide hook for base layout
-  export let onUrlChanged: (url: string | null) => void;
-  $: onUrlChanged(url);
+  // Call hook for base layout
+  $effect(() => {
+    onUrlChanged(url);
+  });
 
   function onEnded() {
     time = 0;
@@ -99,7 +104,7 @@
         bind:duration
         bind:paused
         bind:readyState
-        on:ended={onEnded}
+        onended={onEnded}
       >
       </audio>
 
@@ -109,7 +114,7 @@
         title="Play"
         class="btn size-12 shrink-0"
         aria-label={paused ? "play" : "pause"}
-        on:click={togglePlay}
+        onclick={togglePlay}
       >
         <i class="fa {paused ? 'fa-play' : 'fa-pause'} text-2xl"></i>
       </button>
@@ -119,8 +124,9 @@
         <button
           type="button"
           title="Next"
+          aria-label="Next"
           class="btn size-12 shrink-0"
-          on:click={() => playNext(true)}
+          onclick={() => playNext(true)}
         >
           <i class="fa fa-forward-step text-2xl"></i>
         </button>
@@ -148,8 +154,9 @@
       <button
         type="button"
         title="Mute"
+        aria-label="Mute"
         class="icon-button"
-        on:click={() => {
+        onclick={() => {
           muted = !muted;
         }}
       >
@@ -166,15 +173,16 @@
         max="1"
       />
       <!-- Download link -->
-      <button type="button" title="Download" class="icon-button">
-        <a href={url} download><i class="fa fa-download"></i></a>
+      <button type="button" title="Download" aria-label="Download" class="icon-button">
+        <a href={url} aria-label="Download" download><i class="fa fa-download"></i></a>
       </button>
       <!-- Playlist link -->
       <button
         type="button"
         title="Playlist"
+        aria-label="Playlist"
         class="icon-button"
-        on:click={() => playlistViewer.show()}
+        onclick={() => playlistViewer?.show()}
       >
         <i class="fa fa-list"></i>
       </button>
@@ -182,8 +190,9 @@
       <button
         type="button"
         title="Close"
+        aria-label="Close"
         class="icon-button"
-        on:click={() => {
+        onclick={() => {
           url = null;
           playlist.set([]);
         }}><i class="fa fa-xmark"></i></button

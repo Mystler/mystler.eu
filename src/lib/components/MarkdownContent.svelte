@@ -1,8 +1,13 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import { PageDescription, PageTitle } from "$lib/page-meta";
-  export let title;
-  export let description;
+
+  interface Props {
+    title: any;
+    description: any;
+    children?: import("svelte").Snippet;
+  }
+  let { title, description, children }: Props = $props();
 
   // Set our metadata if we are rendering inside md-pages.
   if ($page.route.id?.startsWith("/(md-pages)")) {
@@ -11,7 +16,7 @@
   }
 </script>
 
-<div class="md"><slot /></div>
+<div class="md">{@render children?.()}</div>
 
 <style lang="postcss">
   .md :global(ul) {

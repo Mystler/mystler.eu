@@ -2,9 +2,12 @@
   import type { PostMD } from "$lib/posts";
   import Panel from "./Panel.svelte";
 
-  export let post: PostMD;
-  export let date: string;
-  export let url: string | undefined = undefined;
+  interface Props {
+    post: PostMD;
+    date: string;
+    url?: string | undefined;
+  }
+  let { post, date, url = undefined }: Props = $props();
 
   const dateDisplay = new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -14,13 +17,17 @@
 </script>
 
 <Panel>
-  <div slot="title">
-    {#if !url}
-      {post.metadata.title}
-    {:else}
-      <a href={url}>{post.metadata.title}</a>
-    {/if}
-  </div>
-  <div slot="date">{dateDisplay}</div>
-  <svelte:component this={post.default} />
+  {#snippet title()}
+    <div>
+      {#if !url}
+        {post.metadata.title}
+      {:else}
+        <a href={url}>{post.metadata.title}</a>
+      {/if}
+    </div>
+  {/snippet}
+  {#snippet date()}
+    <div>{dateDisplay}</div>
+  {/snippet}
+  <post.default />
 </Panel>
