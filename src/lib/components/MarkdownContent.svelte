@@ -3,8 +3,8 @@
   import { PageDescription, PageTitle } from "$lib/page-meta";
 
   interface Props {
-    title: any;
-    description: any;
+    title: string;
+    description: string;
     children?: import("svelte").Snippet;
   }
   let { title, description, children }: Props = $props();

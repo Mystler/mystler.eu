@@ -1,9 +1,10 @@
 <script lang="ts">
   import PageNavigation from "$lib/components/PageNavigation.svelte";
   import Post from "$lib/components/Post.svelte";
+  import type { PageData } from "./$types";
 
   interface Props {
-    data: any;
+    data: PageData;
   }
   let { data }: Props = $props();
 </script>
