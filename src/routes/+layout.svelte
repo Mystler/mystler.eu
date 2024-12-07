@@ -1,6 +1,7 @@
 <script lang="ts">
   import "@fortawesome/fontawesome-free/css/all.min.css";
   import "$lib/styles/noto-font.css";
+  import "$lib/styles/garamond-font.css";
   import "$lib/styles/base.css";
   import Header from "$lib/components/Header.svelte";
   import Sidebar from "$lib/components/Sidebar.svelte";

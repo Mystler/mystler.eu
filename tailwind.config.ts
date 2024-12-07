@@ -6,6 +6,7 @@ export default {
     extend: {},
     fontFamily: {
       sans: ["Noto Sans", "sans-serif"],
+      serif: ["EB Garamond", "serif"],
     },
   },
   plugins: [],

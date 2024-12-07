@@ -12,6 +12,16 @@ p {
   @apply mb-4 last:mb-0;
 }
 
+article p,
+article li {
+  @apply font-serif;
+  font-size: 20px;
+}
+
+article small {
+  @apply font-serif;
+}
+
 h1,
 h2,
 h3,
