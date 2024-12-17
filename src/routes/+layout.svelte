@@ -6,7 +6,7 @@
   import Header from "$lib/components/Header.svelte";
   import Sidebar from "$lib/components/Sidebar.svelte";
   import { siteLink } from "$lib/constants";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import { PageDescription, PageTitle } from "$lib/page-meta";
   import AudioPlayer from "$lib/components/AudioPlayer.svelte";
   import { GlobalAudioCurrentSong, GlobalAudioPlayer, GlobalPlaylist } from "$lib/audioplayer";
@@ -20,9 +20,9 @@
   // Update title and description stores based on page data
   // unless we expect MarkdownContent to do it in md-pages.
   $effect(() => {
-    if (!$page.route.id?.startsWith("/(md-pages)")) {
-      PageTitle.set($page.data.title);
-      PageDescription.set($page.data.description);
+    if (!page.route.id?.startsWith("/(md-pages)")) {
+      PageTitle.set(page.data.title);
+      PageDescription.set(page.data.description);
     }
   });
 
@@ -39,7 +39,7 @@
   <meta property="og:title" content={$PageTitle} />
   <meta name="description" content={$PageDescription} />
   <meta property="og:description" content={$PageDescription} />
-  <meta property="og:url" content="{siteLink}{$page.url.pathname}" />
+  <meta property="og:url" content="{siteLink}{page.url.pathname}" />
 </svelte:head>
 
 <svelte:window onkeydown={handleKeyDown} />
@@ -48,11 +48,11 @@
   <Header />
 
   <div class="site-content grow px-4 py-4">
-    {#if $page.data.titleImage}
+    {#if page.data.titleImage}
       <div transition:slide class="mb-4">
         <img
           class="mx-auto rounded-xl border-2 border-zinc-800"
-          src={$page.data.titleImage}
+          src={page.data.titleImage}
           alt="Mystler.eu"
         />
       </div>

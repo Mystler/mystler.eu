@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import { PageDescription, PageTitle } from "$lib/page-meta";
 
   interface Props {
@@ -10,7 +10,7 @@
   let { title, description, children }: Props = $props();
 
   // Set our metadata if we are rendering inside md-pages.
-  if ($page.route.id?.startsWith("/(md-pages)")) {
+  if (page.route.id?.startsWith("/(md-pages)")) {
     PageTitle.set(title);
     PageDescription.set(description);
   }
