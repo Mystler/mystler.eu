@@ -26,6 +26,8 @@ First, a selection of songs that have not (yet) been compiled onto an album.
 <AudioCardList>
   <AudioCard src="{siteLink}/music/TheEagleScreamsNoMore.ogg" title="Inches of Mercury - The Eagle Screams No More" genre="Metal" />
   <AudioCard src="{siteLink}/music/WhenIDrink.ogg" title="When I Drink (AC Odyssey Tribute Song)" genre="Alternative Rock" />
+  <AudioCard src="{siteLink}/music/EverytimeWeTouch.ogg" title="Everytime We Touch (Cascadia Theme)" genre="Fantasy Cover" />
+  <AudioCard src="{siteLink}/music/StrangeTune.ogg" title="Strange Tune (Desna's Revelation)" genre="Soundtrack" />
   <AudioCard src="{siteLink}/music/TheQueensConservatory.ogg" title="The Queen's Conservatory (Night Fae Piano Tribute)" genre="Piano" />
   <AudioCard src="{siteLink}/music/GlimmerfallCaverns.ogg" title="Glimmerfall Caverns" genre="Piano" />
   <AudioCard src="{siteLink}/music/CatherinesLullaby.ogg" title="Little Princess of the Stars (Catherine's Lullaby)" genre="Piano" />
