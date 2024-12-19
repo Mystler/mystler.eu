@@ -7,7 +7,7 @@
   import Sidebar from "$lib/components/Sidebar.svelte";
   import { siteLink } from "$lib/constants";
   import { page } from "$app/state";
-  import { PageDescription, PageTitle } from "$lib/page-meta";
+  import { meta, setPageDescription, setPageTitle } from "$lib/page-meta.svelte";
   import AudioPlayer from "$lib/components/AudioPlayer.svelte";
   import { GlobalAudioCurrentSong, GlobalAudioPlayer, GlobalPlaylist } from "$lib/audioplayer";
   import { slide } from "svelte/transition";
@@ -21,8 +21,8 @@
   // unless we expect MarkdownContent to do it in md-pages.
   $effect(() => {
     if (!page.route.id?.startsWith("/(md-pages)")) {
-      PageTitle.set(page.data.title);
-      PageDescription.set(page.data.description);
+      setPageTitle(page.data.title);
+      setPageDescription(page.data.description);
     }
   });
 
@@ -35,10 +35,10 @@
 </script>
 
 <svelte:head>
-  <title>{$PageTitle}</title>
-  <meta property="og:title" content={$PageTitle} />
-  <meta name="description" content={$PageDescription} />
-  <meta property="og:description" content={$PageDescription} />
+  <title>{meta.title}</title>
+  <meta property="og:title" content={meta.title} />
+  <meta name="description" content={meta.description} />
+  <meta property="og:description" content={meta.description} />
   <meta property="og:url" content="{siteLink}{page.url.pathname}" />
 </svelte:head>
 
