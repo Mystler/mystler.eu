@@ -1,13 +1,6 @@
 <script lang="ts">
-  import {
-    addSong,
-    GlobalAudioCurrentSong,
-    GlobalAudioPlayer,
-    GlobalPlaylist,
-    type PlaylistEntry,
-  } from "$lib/audioplayer";
+  import { GlobalAudio, type Playlist } from "$lib/audioplayer.svelte";
   import { getContext } from "svelte";
-  import type { Writable } from "svelte/store";
 
   interface Props {
     src: string;
@@ -18,17 +11,17 @@
   let { src, title, genre = null }: Props = $props();
 
   // Register our song into our parents list for "play all" tracking
-  addSong(getContext<Writable<PlaylistEntry[]>>("songs"), src, title);
+  getContext<Playlist>("songs")?.addSong(src, title);
 
   function play() {
-    $GlobalAudioPlayer?.playSong(src, title);
+    GlobalAudio.Player?.playSong(src, title);
   }
 </script>
 
 <div class="relative">
   <button
     type="button"
-    class="audio-card {$GlobalAudioCurrentSong === src ? 'current-song' : ''}"
+    class="audio-card {GlobalAudio.CurrentSong === src ? 'current-song' : ''}"
     onclick={play}
   >
     <i class="fa fa-play text-xl"></i>
@@ -43,7 +36,7 @@
     aria-label="Add to Queue"
     class="absolute -bottom-1 -right-1 size-8 rounded-full bg-sky-900 hover:text-white hover:bg-sky-700"
     onclick={(e) => {
-      addSong(GlobalPlaylist, src, title);
+      GlobalAudio.Playlist.addSong(src, title);
       const button = e.currentTarget;
       button.classList.add("animate-ping");
       button.disabled = true;

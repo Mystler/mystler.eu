@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { type PlaylistEntry } from "$lib/audioplayer";
-  import { writable, type Writable } from "svelte/store";
+  import { Playlist, type PlaylistEntry } from "$lib/audioplayer.svelte";
 
   interface Props {
-    playlist?: Writable<PlaylistEntry[]>;
+    playlist?: Playlist;
     onPlayNow: (song: PlaylistEntry) => void;
   }
-  let { playlist = writable([]), onPlayNow }: Props = $props();
+  let { playlist = new Playlist(), onPlayNow }: Props = $props();
 
   let dialog: HTMLDialogElement;
 
@@ -28,7 +27,7 @@
 
   let dragTargetIdx: number | null = $state(null);
   $effect(() => {
-    if ($playlist) dragTargetIdx = null; // Reset when playlist changes.
+    if (playlist) dragTargetIdx = null; // Reset when playlist changes.
   });
 </script>
 
@@ -40,23 +39,23 @@
         ><i class="fa fa-xmark text-2xl"></i></button
       >
     </div>
-    {#if $playlist.length > 0}
+    {#if playlist.length() > 0}
       <p>
         <i>Drag items to rearrange the queued track order. Use the arrows on mobile devices.</i>
       </p>
       <div class="flex justify-between items-center mb-2">
-        <span>{$playlist.length} songs queued</span>
+        <span>{playlist.length()} songs queued</span>
         <button
           type="button"
           class="p-2 rounded-lg bg-zinc-800 hover:text-white hover:bg-zinc-600"
           onclick={() => {
-            $playlist = [];
+            playlist.clear();
           }}><i class="fa fa-trash-can"></i> Clear All</button
         >
       </div>
     {/if}
     <div class="flex flex-col gap-2">
-      {#each $playlist as item, index (item.id)}
+      {#each playlist.getList() as item, index (item.id)}
         <div
           class="playlist-entry {dragTargetIdx === index ? 'drag-target' : ''}"
           draggable="true"
@@ -86,12 +85,7 @@
             e.preventDefault();
             if (e.dataTransfer) {
               const id = parseInt(e.dataTransfer.getData("text/plain"));
-              const elIdx = $playlist.findIndex((x) => x.id === id);
-              if (elIdx >= 0) {
-                const moveItem = $playlist[elIdx];
-                let tempList = [...$playlist.slice(0, elIdx), ...$playlist.slice(elIdx + 1)];
-                $playlist = [...tempList.slice(0, index), moveItem, ...tempList.slice(index)];
-              }
+              playlist.move(id, index);
             }
           }}
         >
@@ -101,23 +95,15 @@
               title="Up"
               aria-label="Up"
               class={index === 0 ? "pointer-events-none text-zinc-500" : ""}
-              onclick={() =>
-                ([$playlist[index - 1], $playlist[index]] = [
-                  $playlist[index],
-                  $playlist[index - 1],
-                ])}><i class="fa fa-chevron-up"></i></button
+              onclick={() => playlist.moveUp(index)}><i class="fa fa-chevron-up"></i></button
             >
             <i class="fa fa-grip-lines"></i>
             <button
               type="button"
               title="Down"
               aria-label="Down"
-              class={index >= $playlist.length - 1 ? "pointer-events-none text-zinc-500" : ""}
-              onclick={() =>
-                ([$playlist[index + 1], $playlist[index]] = [
-                  $playlist[index],
-                  $playlist[index + 1],
-                ])}><i class="fa fa-chevron-down"></i></button
+              class={index >= playlist.length() - 1 ? "pointer-events-none text-zinc-500" : ""}
+              onclick={() => playlist.moveDown(index)}><i class="fa fa-chevron-down"></i></button
             >
           </div>
           <span>{index + 1}</span>
@@ -128,7 +114,7 @@
               aria-label="Play Now"
               class="hover:text-white"
               onclick={() => {
-                $playlist = [...$playlist.slice(0, index), ...$playlist.slice(index + 1)];
+                playlist.remove(index);
                 onPlayNow(item);
                 close();
               }}><i class="fa fa-play"></i></button
@@ -140,13 +126,11 @@
             title="Remove"
             aria-label="Remove"
             class="hover:text-white"
-            onclick={() => {
-              $playlist = [...$playlist.slice(0, index), ...$playlist.slice(index + 1)];
-            }}><i class="fa fa-trash-can"></i></button
+            onclick={() => playlist.remove(index)}><i class="fa fa-trash-can"></i></button
           >
         </div>
       {/each}
-      {#if $playlist.length === 0}
+      {#if playlist.length() === 0}
         <p>No tracks queued up!</p>
       {/if}
     </div>

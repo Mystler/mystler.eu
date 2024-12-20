@@ -1,13 +1,12 @@
 <script lang="ts">
-  import { GlobalAudioVolume, type PlaylistEntry } from "$lib/audioplayer";
-  import { writable, type Writable } from "svelte/store";
+  import { GlobalAudio, Playlist } from "$lib/audioplayer.svelte";
   import PlaylistViewer from "./PlaylistViewer.svelte";
 
   interface Props {
-    playlist?: Writable<PlaylistEntry[]>;
+    playlist?: Playlist;
     onUrlChanged: (url: string | null) => void;
   }
-  let { playlist = writable([]), onUrlChanged }: Props = $props();
+  let { playlist = new Playlist(), onUrlChanged }: Props = $props();
 
   let url: string | null = $state(null);
   let name: string | undefined = $state();
@@ -30,8 +29,8 @@
   let volumeIcon: string = $state("");
   $effect(() => {
     if (muted) volumeIcon = "fa-volume-xmark";
-    else if ($GlobalAudioVolume >= 0.5) volumeIcon = "fa-volume-high";
-    else if ($GlobalAudioVolume >= 0.2) volumeIcon = "fa-volume-low";
+    else if (GlobalAudio.Volume >= 0.5) volumeIcon = "fa-volume-high";
+    else if (GlobalAudio.Volume >= 0.2) volumeIcon = "fa-volume-low";
     else volumeIcon = "fa-volume-off";
   });
 
@@ -58,15 +57,16 @@
   }
 
   function playNext(now: boolean) {
-    if ($playlist.length > 0) {
-      playSong($playlist[0].url, $playlist[0].title, now);
-      [, ...$playlist] = $playlist;
+    if (playlist.length() > 0) {
+      const nextSong = playlist.getNext();
+      playSong(nextSong.url, nextSong.title, now);
+      playlist.advance();
     }
   }
 
   $effect(() => {
     // Open player when no song is set but we add to queue.
-    if (!url && $playlist.length > 0) {
+    if (!url && playlist.length() > 0) {
       playNext(false);
     }
   });
@@ -98,7 +98,7 @@
       <audio
         src={url}
         bind:this={audio}
-        bind:volume={$GlobalAudioVolume}
+        bind:volume={GlobalAudio.Volume}
         bind:muted
         bind:currentTime={time}
         bind:duration
@@ -119,7 +119,7 @@
         <i class="fa {paused ? 'fa-play' : 'fa-pause'} text-2xl"></i>
       </button>
 
-      {#if $playlist.length > 0}
+      {#if playlist.length() > 0}
         <!-- Next button -->
         <button
           type="button"
@@ -168,7 +168,7 @@
         class="slider w-16 sm:w-24"
         type="range"
         step="any"
-        bind:value={$GlobalAudioVolume}
+        bind:value={GlobalAudio.Volume}
         min="0"
         max="1"
       />
@@ -194,7 +194,7 @@
         class="icon-button"
         onclick={() => {
           url = null;
-          playlist.set([]);
+          playlist.clear();
         }}><i class="fa fa-xmark"></i></button
       >
     </div>

@@ -1,14 +1,21 @@
 import { siteDescription, siteTitle } from "./constants";
 
-export const meta = $state({
-  title: siteTitle,
-  description: siteDescription,
-});
+export const Meta = new (class {
+  #Title = $state(siteTitle);
+  #Description = $state(siteDescription);
 
-export function setPageTitle(title?: string) {
-  meta.title = (title ? title + " - " : "") + siteTitle;
-}
+  set Title(title: string | undefined) {
+    this.#Title = (title ? title + " - " : "") + siteTitle;
+  }
 
-export function setPageDescription(description?: string) {
-  meta.description = description ? description : siteDescription;
-}
+  get Title() {
+    return this.#Title;
+  }
+
+  set Description(description: string | undefined) {
+    this.#Description = description ? description : siteDescription;
+  }
+  get Description() {
+    return this.#Description;
+  }
+})();

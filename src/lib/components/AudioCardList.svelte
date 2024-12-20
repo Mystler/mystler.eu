@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { addSong, GlobalPlaylist, type PlaylistEntry } from "$lib/audioplayer";
+  import { GlobalAudio, Playlist } from "$lib/audioplayer.svelte";
   import { setContext } from "svelte";
-  import { writable } from "svelte/store";
   interface Props {
     children?: import("svelte").Snippet;
   }
@@ -9,15 +8,15 @@
   let { children }: Props = $props();
 
   // Allow Audio Card elements to register with this context
-  const listedSongs = setContext("songs", writable<PlaylistEntry[]>([]));
+  const listedSongs = setContext("songs", new Playlist());
 </script>
 
 <button
   type="button"
   class="p-4 mb-4 rounded-xl bg-zinc-900 text-sky-400 hover:text-white hover:bg-zinc-700"
   onclick={(e) => {
-    for (const song of $listedSongs) {
-      addSong(GlobalPlaylist, song.url, song.title);
+    for (const song of listedSongs.getList()) {
+      GlobalAudio.Playlist.addSong(song.url, song.title);
     }
     const button = e.currentTarget;
     button.classList.add("animate-ping");

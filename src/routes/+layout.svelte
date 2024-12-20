@@ -7,9 +7,9 @@
   import Sidebar from "$lib/components/Sidebar.svelte";
   import { siteLink } from "$lib/constants";
   import { page } from "$app/state";
-  import { meta, setPageDescription, setPageTitle } from "$lib/page-meta.svelte";
+  import { Meta } from "$lib/page-meta.svelte";
   import AudioPlayer from "$lib/components/AudioPlayer.svelte";
-  import { GlobalAudioCurrentSong, GlobalAudioPlayer, GlobalPlaylist } from "$lib/audioplayer";
+  import { GlobalAudio } from "$lib/audioplayer.svelte";
   import { slide } from "svelte/transition";
 
   interface Props {
@@ -21,24 +21,24 @@
   // unless we expect MarkdownContent to do it in md-pages.
   $effect(() => {
     if (!page.route.id?.startsWith("/(md-pages)")) {
-      setPageTitle(page.data.title);
-      setPageDescription(page.data.description);
+      Meta.Title = page.data.title;
+      Meta.Description = page.data.description;
     }
   });
 
   function handleKeyDown(e: KeyboardEvent) {
-    if ($GlobalAudioPlayer?.isActive() && e.key === " ") {
-      $GlobalAudioPlayer?.togglePlay();
+    if (GlobalAudio.Player?.isActive() && e.key === " ") {
+      GlobalAudio.Player?.togglePlay();
       e.preventDefault();
     }
   }
 </script>
 
 <svelte:head>
-  <title>{meta.title}</title>
-  <meta property="og:title" content={meta.title} />
-  <meta name="description" content={meta.description} />
-  <meta property="og:description" content={meta.description} />
+  <title>{Meta.Title}</title>
+  <meta property="og:title" content={Meta.Title} />
+  <meta name="description" content={Meta.Description} />
+  <meta property="og:description" content={Meta.Description} />
   <meta property="og:url" content="{siteLink}{page.url.pathname}" />
 </svelte:head>
 
@@ -69,10 +69,10 @@
 
   <div class="sticky bottom-0">
     <AudioPlayer
-      bind:this={$GlobalAudioPlayer}
-      playlist={GlobalPlaylist}
+      bind:this={GlobalAudio.Player}
+      playlist={GlobalAudio.Playlist}
       onUrlChanged={(url) => {
-        GlobalAudioCurrentSong.set(url);
+        GlobalAudio.CurrentSong = url;
       }}
     />
   </div>

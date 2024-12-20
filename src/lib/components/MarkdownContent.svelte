@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from "$app/state";
-  import { setPageTitle, setPageDescription } from "$lib/page-meta.svelte";
+  import { Meta } from "$lib/page-meta.svelte";
 
   interface Props {
     title: string;
@@ -11,8 +11,8 @@
 
   // Set our metadata if we are rendering inside md-pages.
   if (page.route.id?.startsWith("/(md-pages)")) {
-    setPageTitle(title);
-    setPageDescription(description);
+    Meta.Title = title;
+    Meta.Description = description;
   }
 </script>
 
