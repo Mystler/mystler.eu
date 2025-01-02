@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Playlist, type PlaylistEntry } from "$lib/audioplayer.svelte";
+  import { flip } from "svelte/animate";
 
   interface Props {
     playlist?: Playlist;
@@ -57,6 +58,7 @@
     <div class="flex flex-col gap-2">
       {#each playlist.getList() as item, index (item.id)}
         <div
+          animate:flip={{ duration: 200 }}
           class="playlist-entry {dragTargetIdx === index ? 'drag-target' : ''}"
           draggable="true"
           role="listitem"
@@ -87,6 +89,7 @@
               const id = parseInt(e.dataTransfer.getData("text/plain"));
               playlist.move(id, index);
             }
+            dragTargetIdx = null;
           }}
         >
           <div class="flex flex-col items-center">
