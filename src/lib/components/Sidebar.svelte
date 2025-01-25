@@ -17,22 +17,13 @@
       <i class="fa-brands fa-github"></i>
     </a>
     <a
-      href="http://www.youtube.com/user/MystlerDE"
+      href="https://www.youtube.com/user/MystlerDE"
       title="YouTube"
       aria-label="YouTube"
       target="_blank"
       rel="noopener"
     >
       <i class="fa-brands fa-youtube"></i>
-    </a>
-    <a
-      href="https://twitter.com/Mystler"
-      title="Twitter"
-      aria-label="Twitter"
-      target="_blank"
-      rel="noopener"
-    >
-      <i class="fa-brands fa-twitter"></i>
     </a>
     <a
       href="https://twitch.tv/mystler"
@@ -42,6 +33,24 @@
       rel="noopener"
     >
       <i class="fa-brands fa-twitch"></i>
+    </a>
+    <a
+      href="https://bsky.app/profile/mystler.eu"
+      title="Bluesky"
+      aria-label="Bluesky"
+      target="_blank"
+      rel="noopener"
+    >
+      <i class="fa-brands fa-bluesky"></i>
+    </a>
+    <a
+      href="https://mastodon.world/@mystler"
+      title="Mastodon"
+      aria-label="Mastodon"
+      target="_blank"
+      rel="noopener"
+    >
+      <i class="fa-brands fa-mastodon"></i>
     </a>
   </div>
 </Panel>
