@@ -1,50 +1,65 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Tailwind setup */
+@theme {
+  --font-*: initial;
+  --font-sans: "Noto Sans", sans-serif;
+  --font-serif: "EB Garamond", serif;
+}
 
 /* Base changes */
+@layer base {
+  body {
+    @apply bg-zinc-700 text-zinc-200;
+  }
 
-body {
-  @apply bg-zinc-700 text-zinc-200;
-}
+  p {
+    @apply mb-4 last:mb-0;
+  }
 
-p {
-  @apply mb-4 last:mb-0;
-}
+  article p,
+  article li {
+    @apply font-serif;
+    font-size: 20px;
+  }
 
-article p,
-article li {
-  @apply font-serif;
-  font-size: 20px;
-}
+  article small {
+    @apply font-serif;
+  }
 
-article small {
-  @apply font-serif;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold mt-6 mb-3 first:mt-0;
+  }
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-3xl;
+  }
+  h3 {
+    @apply text-xl;
+  }
+  h4 {
+    @apply text-lg;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-semibold mt-6 mb-3 first:mt-0;
-}
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+  button:disabled,
+  [role="button"]:disabled {
+    cursor: default;
+  }
 
-h1 {
-  @apply text-4xl;
-}
-
-h2 {
-  @apply text-3xl;
-}
-
-h3 {
-  @apply text-xl;
-}
-
-h4 {
-  @apply text-lg;
+  .site-content a {
+    @apply text-sky-400 hover:text-sky-50 visited:text-sky-500;
+  }
 }
 
 /* Custom classes */
@@ -100,5 +115,5 @@ h4 {
 }
 
 .flickr-embed-frame {
-  @apply mx-auto !important;
+  @apply mx-auto!;
 }

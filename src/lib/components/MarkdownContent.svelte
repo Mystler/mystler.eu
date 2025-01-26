@@ -19,6 +19,8 @@
 <div class="md">{@render children?.()}</div>
 
 <style lang="postcss">
+  @reference "$lib/styles/base.css";
+
   .md :global(ul) {
     @apply pl-6 list-disc;
   }

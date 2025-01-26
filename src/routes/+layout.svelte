@@ -58,7 +58,7 @@
       </div>
     {/if}
     <div class="flex justify-center gap-4 flex-col lg:flex-row">
-      <main class="grow lg:max-w-screen-xl">
+      <main class="grow lg:max-w-(--breakpoint-xl)">
         {@render children?.()}
       </main>
       <div class="flex-none lg:w-72 lg:sticky lg:self-start lg:top-[76px]">
@@ -77,9 +77,3 @@
     />
   </div>
 </div>
-
-<style lang="postcss">
-  .site-content :global(a) {
-    @apply text-sky-400 hover:text-sky-50 visited:text-sky-500;
-  }
-</style>

@@ -207,6 +207,8 @@
 {/if}
 
 <style lang="postcss">
+  @reference "$lib/styles/base.css";
+
   .slider {
     @apply accent-sky-400;
   }

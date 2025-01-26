@@ -32,7 +32,7 @@
   });
 </script>
 
-<dialog bind:this={dialog} class="backdrop:backdrop-blur bg-transparent">
+<dialog bind:this={dialog} class="m-auto backdrop:backdrop-blur-sm bg-transparent">
   <div class="p-4 bg-zinc-700 rounded-xl border-2 border-zinc-800 text-zinc-200 min-w-80">
     <div class="flex justify-between gap-4 items-start">
       <h1>Queue</h1>
@@ -59,7 +59,10 @@
       {#each playlist.getList() as item, index (item.id)}
         <div
           animate:flip={{ duration: 200 }}
-          class="playlist-entry {dragTargetIdx === index ? 'drag-target' : ''}"
+          class="flex items-center px-4 py-1 gap-4 cursor-grab bg-zinc-800 rounded-lg hover:bg-zinc-600 {dragTargetIdx ===
+          index
+            ? 'bg-zinc-600'
+            : ''}"
           draggable="true"
           role="listitem"
           ondragstart={(e) => {
@@ -139,12 +142,3 @@
     </div>
   </div>
 </dialog>
-
-<style lang="postcss">
-  .playlist-entry {
-    @apply flex items-center px-4 py-1 gap-4 cursor-grab bg-zinc-800 rounded-lg hover:bg-zinc-600;
-  }
-  .drag-target {
-    @apply bg-zinc-600;
-  }
-</style>

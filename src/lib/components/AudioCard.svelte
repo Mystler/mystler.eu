@@ -49,6 +49,8 @@
 </div>
 
 <style lang="postcss">
+  @reference "$lib/styles/base.css";
+
   .audio-card {
     @apply p-4 rounded-xl bg-zinc-900 hover:bg-zinc-700 text-sky-400 hover:text-white text-center;
     @apply flex flex-col items-center gap-2 w-full h-full;

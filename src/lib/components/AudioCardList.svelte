@@ -33,6 +33,8 @@
 </div>
 
 <style lang="postcss">
+  @reference "$lib/styles/base.css";
+
   .audio-card-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));

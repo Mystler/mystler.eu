@@ -35,6 +35,8 @@
 </header>
 
 <style lang="postcss">
+  @reference "$lib/styles/base.css";
+
   .menu {
     @apply sm:flex sm:flex-wrap;
     @apply max-sm:divide-y max-sm:divide-zinc-700;
