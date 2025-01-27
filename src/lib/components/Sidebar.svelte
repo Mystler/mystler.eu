@@ -6,7 +6,7 @@
   {#snippet title()}
     <div class="text-center">Links</div>
   {/snippet}
-  <div class="post-panel-body text-center flex flex-col gap-4 text-4xl">
+  <div class="post-panel-body text-center flex flex-col gap-4 text-4xl w-fit mx-auto">
     <a
       href="https://github.com/Mystler"
       title="GitHub"
@@ -59,7 +59,7 @@
   {#snippet title()}
     <div class="text-center">Support Me</div>
   {/snippet}
-  <div class="post-panel-body text-center flex flex-col gap-4 text-4xl">
+  <div class="post-panel-body text-center flex flex-col gap-4 text-4xl w-fit mx-auto">
     <a
       href="https://www.paypal.me/Mystler"
       title="PayPal"
