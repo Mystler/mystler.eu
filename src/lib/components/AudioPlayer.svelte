@@ -53,6 +53,19 @@
       readyState = 0;
       paused = true;
       pendingPlay = playNow;
+
+      // Update MediaSession metadata
+      if ("mediaSession" in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title,
+          artist: "Mystler",
+          artwork: [
+            {
+              src: "/favicon.png",
+            },
+          ],
+        });
+      }
     }
   }
 
@@ -87,6 +100,17 @@
   function onEnded() {
     time = 0;
     playNext(true);
+  }
+
+  // Set up MediaSession API
+  if ("mediaSession" in navigator) {
+    navigator.mediaSession.metadata = null;
+    navigator.mediaSession.setActionHandler("play", () => togglePlay());
+    navigator.mediaSession.setActionHandler("pause", () => togglePlay());
+    navigator.mediaSession.setActionHandler("nexttrack", () => playNext(true));
+    navigator.mediaSession.setActionHandler("previoustrack", () => {
+      time = 0;
+    });
   }
 </script>
 
