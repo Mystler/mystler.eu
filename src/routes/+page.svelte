@@ -9,7 +9,7 @@
   let { data }: Props = $props();
 </script>
 
-{#each data.page.posts as post}
+{#each data.page.posts as post (post.url)}
   <Post post={post.post} date={post.date} url={post.url} />
 {/each}
 
