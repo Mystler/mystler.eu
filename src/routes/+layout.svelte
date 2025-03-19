@@ -5,26 +5,16 @@
   import "$lib/styles/base.css";
   import Header from "$lib/components/Header.svelte";
   import Sidebar from "$lib/components/Sidebar.svelte";
-  import { siteLink } from "$lib/constants";
+  import { siteDescription, siteLink, siteTitle } from "$lib/constants";
   import { page } from "$app/state";
-  import { Meta } from "$lib/page-meta.svelte";
   import AudioPlayer from "$lib/components/AudioPlayer.svelte";
   import { GlobalAudio } from "$lib/audioplayer.svelte";
   import { slide } from "svelte/transition";
 
-  interface Props {
-    children?: import("svelte").Snippet;
-  }
-  let { children }: Props = $props();
+  let { children } = $props();
 
-  // Update title and description stores based on page data
-  // unless we expect MarkdownContent to do it in md-pages.
-  $effect(() => {
-    if (!page.route.id?.startsWith("/(md-pages)")) {
-      Meta.Title = page.data.title;
-      Meta.Description = page.data.description;
-    }
-  });
+  let title = $derived((page.data.title ? page.data.title + " - " : "") + siteTitle);
+  let description = $derived(page.data.description ? page.data.description : siteDescription);
 
   function handleKeyDown(e: KeyboardEvent) {
     if (GlobalAudio.Player?.isActive() && e.key === " ") {
@@ -35,11 +25,12 @@
 </script>
 
 <svelte:head>
-  <title>{Meta.Title}</title>
-  <meta property="og:title" content={Meta.Title} />
-  <meta name="description" content={Meta.Description} />
-  <meta property="og:description" content={Meta.Description} />
+  <title>{title}</title>
+  <meta property="og:title" content={title} />
+  <meta name="description" content={description} />
+  <meta property="og:description" content={description} />
   <meta property="og:url" content="{siteLink}{page.url.pathname}" />
+  <meta property="og:image" content="{siteLink}/favicon.png" />
 </svelte:head>
 
 <svelte:window onkeydown={handleKeyDown} />

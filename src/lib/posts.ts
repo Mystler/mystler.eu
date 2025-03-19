@@ -1,11 +1,11 @@
-import type { SvelteComponent } from "svelte";
+import type { Component } from "svelte";
 
 export interface PostMD {
   metadata: {
     title: string;
     description?: string;
   };
-  default: typeof SvelteComponent;
+  default: Component;
 }
 
 export interface PostPage {

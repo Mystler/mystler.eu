@@ -1,19 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/state";
-  import { Meta } from "$lib/page-meta.svelte";
-
-  interface Props {
-    title: string;
-    description: string;
-    children?: import("svelte").Snippet;
-  }
-  let { title, description, children }: Props = $props();
-
-  // Set our metadata if we are rendering inside md-pages.
-  if (page.route.id?.startsWith("/(md-pages)")) {
-    Meta.Title = title;
-    Meta.Description = description;
-  }
+  let { children } = $props();
 </script>
 
 <div class="md">{@render children?.()}</div>
