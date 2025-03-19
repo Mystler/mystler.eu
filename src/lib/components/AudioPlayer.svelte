@@ -15,8 +15,6 @@
   let paused: boolean = $state(true);
   let pendingPlay: boolean = $state(false);
   let muted: boolean = $state(false);
-  let readyState: number = $state(0);
-  let audio: HTMLAudioElement | undefined = $state();
   let playlistViewer: PlaylistViewer | undefined = $state();
 
   function format(time: number): string {
@@ -26,12 +24,11 @@
     return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
   }
 
-  let volumeIcon: string = $state("");
-  $effect(() => {
-    if (muted) volumeIcon = "fa-volume-xmark";
-    else if (GlobalAudio.Volume >= 0.5) volumeIcon = "fa-volume-high";
-    else if (GlobalAudio.Volume >= 0.2) volumeIcon = "fa-volume-low";
-    else volumeIcon = "fa-volume-off";
+  let volumeIcon = $derived.by(() => {
+    if (muted) return "fa-volume-xmark";
+    else if (GlobalAudio.Volume >= 0.5) return "fa-volume-high";
+    else if (GlobalAudio.Volume >= 0.2) return "fa-volume-low";
+    else return "fa-volume-off";
   });
 
   // Public access functions
@@ -50,9 +47,9 @@
       url = src;
       name = title;
       time = 0;
-      readyState = 0;
       paused = true;
       pendingPlay = playNow;
+      onUrlChanged(url);
 
       // Update MediaSession metadata
       if ("mediaSession" in navigator) {
@@ -84,19 +81,6 @@
     }
   });
 
-  // Restart the actual player when variables changed and data is ready
-  $effect(() => {
-    if (pendingPlay && url && audio && readyState > audio.HAVE_CURRENT_DATA) {
-      paused = false;
-      pendingPlay = false;
-    }
-  });
-
-  // Call hook for base layout
-  $effect(() => {
-    onUrlChanged(url);
-  });
-
   function onEnded() {
     time = 0;
     playNext(true);
@@ -121,13 +105,18 @@
       <!-- Invisible audio player element -->
       <audio
         src={url}
-        bind:this={audio}
         bind:volume={GlobalAudio.Volume}
         bind:muted
         bind:currentTime={time}
         bind:duration
         bind:paused
-        bind:readyState
+        onloadeddata={(e) => {
+          // Restart the actual player when variables changed and data is ready
+          if (pendingPlay) {
+            paused = false;
+            pendingPlay = false;
+          }
+        }}
         onended={onEnded}
       >
       </audio>
@@ -219,6 +208,7 @@
         onclick={() => {
           url = null;
           playlist.clear();
+          onUrlChanged(url);
         }}><i class="fa fa-xmark"></i></button
       >
     </div>
