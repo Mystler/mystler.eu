@@ -110,7 +110,7 @@
         bind:currentTime={time}
         bind:duration
         bind:paused
-        onloadeddata={(e) => {
+        onloadeddata={() => {
           // Restart the actual player when variables changed and data is ready
           if (pendingPlay) {
             paused = false;
