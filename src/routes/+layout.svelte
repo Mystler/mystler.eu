@@ -10,6 +10,7 @@
   import AudioPlayer from "$lib/components/AudioPlayer.svelte";
   import { GlobalAudio } from "$lib/audioplayer.svelte";
   import { slide } from "svelte/transition";
+  import { quintOut } from "svelte/easing";
 
   let { children } = $props();
 
@@ -22,6 +23,19 @@
       e.preventDefault();
     }
   }
+
+  // Title image preloading for a smooth animation
+  let titlePreload = $derived.by(() => {
+    return new Promise<void>((resolve) => {
+      if (!page.data.titleImage) {
+        resolve();
+        return;
+      }
+      const img = new Image();
+      img.onload = () => resolve();
+      img.src = page.data.titleImage;
+    });
+  });
 </script>
 
 <svelte:head>
@@ -40,13 +54,15 @@
 
   <div class="site-content grow px-4 py-4">
     {#if page.data.titleImage}
-      <div transition:slide class="mb-4">
-        <img
-          class="mx-auto rounded-xl border-2 border-zinc-800"
-          src={page.data.titleImage}
-          alt="Mystler.eu"
-        />
-      </div>
+      {#await titlePreload then _}
+        <div transition:slide={{ easing: quintOut }} class="mb-4">
+          <img
+            class="mx-auto rounded-xl border-2 border-zinc-800"
+            src={page.data.titleImage}
+            alt="Mystler.eu"
+          />
+        </div>
+      {/await}
     {/if}
     <div class="flex justify-center gap-4 flex-col lg:flex-row">
       <main class="grow lg:max-w-(--breakpoint-xl)">
