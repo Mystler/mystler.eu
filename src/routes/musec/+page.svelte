@@ -1,14 +1,17 @@
 <script lang="ts">
   import { siteLink } from "$lib/constants";
+  import { quintOut } from "svelte/easing";
   import { fade } from "svelte/transition";
   let lang = $state("en");
 
   const fadeIn = {
     delay: 200,
     duration: 200,
+    easing: quintOut,
   };
   const fadeOut = {
     duration: 200,
+    easing: quintOut,
   };
 </script>
 
