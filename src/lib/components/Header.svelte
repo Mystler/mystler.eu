@@ -3,19 +3,13 @@
   import { slide } from "svelte/transition";
 
   let menuOpen: boolean = $state(false);
-
-  function toggleMenu(event: MouseEvent) {
-    menuOpen = !menuOpen;
-
-    if (menuOpen) {
-      document.body.addEventListener("click", toggleMenu);
-    } else {
-      document.body.removeEventListener("click", toggleMenu);
-    }
-
-    event.stopPropagation();
-  }
 </script>
+
+<svelte:document
+  onclick={() => {
+    menuOpen = false;
+  }}
+/>
 
 {#snippet menu()}
   <a href="/projects">Projects</a>
@@ -30,7 +24,15 @@
     <div class="flex justify-between px-3">
       <a class="text-xl font-semibold content-center py-4" href="/">Mystler.eu</a>
       <div class="sm:hidden py-2 content-center">
-        <button type="button" class="btn w-10" onclick={toggleMenu} aria-label="Toggle Menu">
+        <button
+          type="button"
+          class="btn w-10"
+          onclick={(e) => {
+            menuOpen = !menuOpen;
+            e.stopPropagation();
+          }}
+          aria-label="Toggle Menu"
+        >
           <i class="fa {menuOpen ? 'fa-xmark' : 'fa-bars'}"></i>
         </button>
       </div>
