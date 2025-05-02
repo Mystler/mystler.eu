@@ -55,7 +55,7 @@
   <div class="site-content grow px-4 py-4">
     {#if page.data.titleImage}
       {#await titlePreload then}
-        <div transition:slide={{ easing: quintOut }} class="mb-4">
+        <div transition:slide|global={{ easing: quintOut }} class="mb-4">
           <img
             class="mx-auto rounded-xl border-2 border-zinc-800"
             src={page.data.titleImage}
