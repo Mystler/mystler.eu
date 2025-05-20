@@ -23,7 +23,7 @@ In school, I was learning **French** for 5 years. I was pretty decent at it and 
 
 In 2018, I started using Duolingo. I was curious about how the app works and how well it can help with learning a language. I started learning **Swedish** and completed the entire course within months. I complemented my learning from the app with digging through grammar rules and research myself, watching Swedish television, and listening to Swedish radio. I consider my proficiency decent enough to have conversations and survive in Sweden (disregarding the fact that Swedes are usually good at English anyway). Why I picked Swedish? It was a mix of being interested in a Nordic language and a lot of my favorite music bands being from Sweden.
 
-Other than that, I have also been learning some **Greek** and **Arabic** on Duolingo - without particular aspirations for fluency. I wanted to learn more about those alphabets and how the languages work, and then take it from there to see how far I get.
+Other than that, I have also been learning some **Greek**, **Arabic**, and **Hindi** - without particular aspirations for fluency. I wanted to learn more about those alphabets and how the languages work, and then take it from there to see how far I get.
 
 ### Featured Blogposts
 
