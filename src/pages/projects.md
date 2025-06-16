@@ -21,7 +21,7 @@ Here is also a small selection of technologies and frameworks.
 
 #### Technologies and Frameworks
 
-CMake, Git, Linux Servers, .NET, NodeJS/NPM, Ruby on Rails, Unreal Engine, Spreadsheets (Excel and Google), SQL Databases (MySQL/Maria/Postgres/Oracle/SQLite), Subversion, Svelte / SvelteKit, Tailwind, Qt, Visual Studio and VS Code
+CMake, Git, Linux Servers, .NET, NodeJS, NoSQL (MongoDB), PM2, Qt, Ruby on Rails, Spreadsheets (Excel and Google), SQL Databases (MySQL / Maria / Postgres / Oracle / SQLite), Svelte / SvelteKit, TailwindCSS, Unreal Engine, Valkey / Redis, Visual Studio and VS Code
 
 The same disclaimer as for programming languages applies. I consider all of these tools as part of the bigger picture and I will practically use whatever I think will help me achieve a result in a way that seems all fitting for the context, fun, a good choice, and the right mix between effort and gain.
 
