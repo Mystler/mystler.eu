@@ -187,7 +187,9 @@
       />
       <!-- Download link -->
       <button type="button" title="Download" aria-label="Download" class="icon-button">
-        <a href={url} aria-label="Download" download><i class="fa fa-download"></i></a>
+        <a href={url} aria-label="Download" target="_blank" rel="external noopener" download
+          ><i class="fa fa-download"></i></a
+        >
       </button>
       <!-- Playlist link -->
       <button

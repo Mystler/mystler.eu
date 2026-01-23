@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { resolve } from "$app/paths";
   import { quintOut } from "svelte/easing";
   import { slide } from "svelte/transition";
 
@@ -12,17 +13,17 @@
 />
 
 {#snippet menu()}
-  <a href="/projects">Projects</a>
-  <a href="/music">Music</a>
-  <a href="/photos">Photos</a>
-  <a href="/words">Words</a>
-  <a href="/about">About</a>
+  <a href={resolve("/projects")}>Projects</a>
+  <a href={resolve("/music")}>Music</a>
+  <a href={resolve("/photos")}>Photos</a>
+  <a href={resolve("/words")}>Words</a>
+  <a href={resolve("/about")}>About</a>
 {/snippet}
 
 <header class="lg:sticky portrait:sticky top-0 z-50">
   <nav class="bg-zinc-900 sm:flex max-sm:divide-y max-sm:divide-zinc-600">
     <div class="flex justify-between px-3">
-      <a class="text-xl font-semibold content-center py-4" href="/">Mystler.eu</a>
+      <a class="text-xl font-semibold content-center py-4" href={resolve("/")}>Mystler.eu</a>
       <div class="sm:hidden py-2 content-center">
         <button
           type="button"

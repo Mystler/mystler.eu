@@ -1,19 +1,22 @@
 <script lang="ts">
+  import { resolve } from "$app/paths";
   import type { PostMD } from "$lib/posts";
   import Panel from "./Panel.svelte";
 
   interface Props {
     post: PostMD;
     date: string;
-    url?: string | undefined;
+    url?: `/${string}/${string}/${string}/${string}/` | undefined;
   }
   let { post, date, url = undefined }: Props = $props();
 
-  const dateDisplay = new Intl.DateTimeFormat("en", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(new Date(date));
+  const dateDisplay = $derived(
+    new Intl.DateTimeFormat("en", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    }).format(new Date(date)),
+  );
 </script>
 
 <Panel>
@@ -22,7 +25,7 @@
       {#if !url}
         {post.metadata.title}
       {:else}
-        <a href={url}>{post.metadata.title}</a>
+        <a href={resolve(url)}>{post.metadata.title}</a>
       {/if}
     </div>
   {/snippet}

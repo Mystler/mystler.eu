@@ -48,7 +48,9 @@
       Musec is open source software and using the Qt5 framework. It is available in English, German and
       French.
     </p>
-    <h2><a href="{siteLink}/musec/score" target="_blank" rel="noopener">View Scoreboard</a></h2>
+    <h2>
+      <a href="{siteLink}/musec/score" target="_blank" rel="external noopener">View Scoreboard</a>
+    </h2>
     <h3>Download</h3>
     <p>
       <b>Version 1.1.2 (2014-02-06)</b><br />
@@ -89,7 +91,11 @@
       Musec ist Open Source Software und nutzt die Qt5 Bibliothek. Es ist verfügbar in Englisch, Deutsch
       und Französisch.
     </p>
-    <h2><a href="{siteLink}/musec/score" target="_blank" rel="noopener">Punktetafel ansehen</a></h2>
+    <h2>
+      <a href="{siteLink}/musec/score" target="_blank" rel="external noopener"
+        >Punktetafel ansehen</a
+      >
+    </h2>
     <h3>Download</h3>
     <p>
       <b>Version 1.1.2 (06.02.2014)</b><br />
@@ -123,13 +129,15 @@
     <p><img src="/img/musec.png" alt="Musec" /></p>
     <p>
       <i>(Traduction par Lyrositor)</i><br />
-      Choisissez des dossiers et des fichiers de votre propre bibliothèque musicale et voyez si vous
-      pouvez devinez le titre, l’artiste et l’album en écoutant seulement moins de 5 secondes d’une portion
-      de la chanson. Des réponses correctes ajouteront des points à votre score.<br />
+      Choisissez des dossiers et des fichiers de votre propre bibliothèque musicale et voyez si vous pouvez
+      devinez le titre, l’artiste et l’album en écoutant seulement moins de 5 secondes d’une portion de
+      la chanson. Des réponses correctes ajouteront des points à votre score.<br />
       Musec est un logiciel open source utilisant Qt5. Il est disponible en Anglais, en Allemand et en
       Français.
     </p>
-    <h2><a href="{siteLink}/musec/score" target="_blank" rel="noopener">Voir Scoreboard</a></h2>
+    <h2>
+      <a href="{siteLink}/musec/score" target="_blank" rel="external noopener">Voir Scoreboard</a>
+    </h2>
     <h3>Download</h3>
     <p>
       <b>Version 1.1.2 (06.02.2014)</b><br />

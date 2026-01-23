@@ -14,7 +14,7 @@ export interface PostPage {
   hasPrevPage: boolean;
   posts: {
     post: PostMD;
-    url: string;
+    url: `/${string}/${string}/${string}/${string}/`;
     date: string;
   }[];
 }
@@ -44,7 +44,10 @@ export async function fetchPosts(page: number = -1): Promise<PostPage> {
       // Split with limit doesn't return the remainder. Booo!
       const parts = postPath.split("-");
       const remainder = parts.splice(3);
-      const url = "/" + parts.join("/") + "/" + remainder.join("-");
+      const url = ("/" +
+        parts.join("/") +
+        "/" +
+        remainder.join("-")) as `/${string}/${string}/${string}/${string}/`;
 
       return {
         post: post,

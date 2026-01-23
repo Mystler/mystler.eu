@@ -1,6 +1,6 @@
 <script lang="ts">
   import { GlobalAudio, type Playlist } from "$lib/audioplayer.svelte";
-  import { getContext } from "svelte";
+  import { getContext, onMount } from "svelte";
 
   interface Props {
     src: string;
@@ -11,7 +11,9 @@
   let { src, title, genre = null }: Props = $props();
 
   // Register our song into our parents list for "play all" tracking
-  getContext<Playlist>("songs")?.addSong(src, title);
+  onMount(() => {
+    getContext<Playlist>("songs")?.addSong(src, title);
+  });
 
   function play() {
     GlobalAudio.Player?.playSong(src, title);
