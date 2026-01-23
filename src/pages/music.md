@@ -24,6 +24,7 @@ If you enjoy my music and would like to use it in some project of your own, I am
 First, a selection of songs that have not (yet) been compiled onto an album.
 
 <AudioCardList>
+  <AudioCard src="{siteLink}/music/EndTimesMetal.ogg" title="End Times (Outer Wilds Tribute Song)" genre="Metal" />
   <AudioCard src="{siteLink}/music/TheEagleScreamsNoMore.ogg" title="Inches of Mercury - The Eagle Screams No More" genre="Metal" />
   <AudioCard src="{siteLink}/music/WhenIDrink.ogg" title="When I Drink (AC Odyssey Tribute Song)" genre="Alternative Rock" />
   <AudioCard src="{siteLink}/music/EverytimeWeTouch.ogg" title="Everytime We Touch (Cascadia Theme)" genre="Fantasy Cover" />
