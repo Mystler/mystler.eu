@@ -4,5 +4,49 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "files.eol": "\n"
+  "files.eol": "\n",
+  "terminal.integrated.enablePersistentSessions": false,
+  "actionButtons": {
+    "commands": [
+      {
+        "name": "Install",
+        "command": "pnpm install",
+        "singleInstance": true,
+        "focus": true
+      },
+      {
+        "name": "Dev Server",
+        "command": "pnpm dev",
+        "singleInstance": true,
+        "focus": true
+      },
+      {
+        "name": "LAN Server",
+        "command": "pnpm dev --host",
+        "singleInstance": true,
+        "focus": true
+      },
+      {
+        "name": "Build",
+        "command": "pnpm build",
+        "singleInstance": true,
+        "focus": true
+      },
+      {
+        "name": "Preview",
+        "command": "pnpm preview",
+        "singleInstance": true,
+        "focus": true
+      },
+      {
+        "name": "Check & Lint",
+        "command": "pnpm check && pnpm lint",
+        "singleInstance": true,
+        "focus": true
+      }
+    ],
+    "defaultColor": "#ffff77",
+    "reloadButton": "↻",
+    "loadNpmCommands": false
+  }
 }
