@@ -68,7 +68,7 @@
       <main class="grow lg:max-w-(--breakpoint-xl)">
         {@render children?.()}
       </main>
-      <div class="flex-none lg:w-72 lg:sticky lg:self-start lg:top-[76px]">
+      <div class="flex-none lg:w-72 lg:sticky lg:self-start lg:top-19">
         <Sidebar />
       </div>
     </div>

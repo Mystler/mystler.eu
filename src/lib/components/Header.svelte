@@ -13,11 +13,11 @@
 />
 
 {#snippet menu()}
-  <a href={resolve("/projects")}>Projects</a>
-  <a href={resolve("/music")}>Music</a>
-  <a href={resolve("/photos")}>Photos</a>
-  <a href={resolve("/words")}>Words</a>
-  <a href={resolve("/about")}>About</a>
+  <a href={resolve("/projects/")}>Projects</a>
+  <a href={resolve("/music/")}>Music</a>
+  <a href={resolve("/photos/")}>Photos</a>
+  <a href={resolve("/words/")}>Words</a>
+  <a href={resolve("/about/")}>About</a>
 {/snippet}
 
 <header class="lg:sticky portrait:sticky top-0 z-50">
