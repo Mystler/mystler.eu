@@ -34,7 +34,7 @@
           }}
           aria-label="Toggle Menu"
         >
-          <i class="fa {menuOpen ? 'fa-xmark' : 'fa-bars'}"></i>
+          <i class="fa {menuOpen ? 'fa-xmark' : 'fa-bars'} w-4!"></i>
         </button>
       </div>
     </div>
