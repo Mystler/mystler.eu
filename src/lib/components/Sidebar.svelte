@@ -61,13 +61,13 @@
   {/snippet}
   <div class="post-panel-body text-center flex flex-col gap-4 text-4xl w-fit mx-auto">
     <a
-      href="https://www.paypal.me/Mystler"
-      title="PayPal"
-      aria-label="PayPal"
+      href="https://ko-fi.com/mystler"
+      title="Ko-fi"
+      aria-label="Ko-fi"
       target="_blank"
       rel="noopener"
     >
-      <i class="fa-brands fa-paypal"></i>
+      <i class="fa-brands fa-ko-fi"></i>
     </a>
   </div>
 </Panel>
