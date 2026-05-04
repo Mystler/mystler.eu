@@ -8,7 +8,7 @@
   @reference "$lib/styles/base.css";
 
   .md :global(ul) {
-    @apply pl-6 list-disc;
+    @apply pl-6 list-disc mb-4 last:mb-0;
   }
 
   .md :global(table td),
@@ -31,5 +31,9 @@
 
   .md :global(p) {
     @apply text-justify;
+  }
+
+  .md :global(hr) {
+    @apply mb-4;
   }
 </style>
